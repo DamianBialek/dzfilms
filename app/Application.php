@@ -2,6 +2,7 @@
 
 use Documents\Controller\DocumentsController;
 use Warehouse\Controller\WarehouseController;
+use Movie\Controller\MovieController;
 use Auth\Controller\AuthController;
 
 class Application {
@@ -27,7 +28,8 @@ class Application {
         $controllerName = (isset($_GET['mod']) && $_GET['mod'] ? $_GET['mod'] : 'home');
 
         $map = [
-            "home" => HomeController::class
+            "home" => HomeController::class,
+            "movie" => MovieController::class
         ];
 
         if(!isset($map[$controllerName])){

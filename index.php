@@ -1,4 +1,5 @@
 <?php
+session_start();
 define("ROOT", __DIR__.'/');
 
 include ROOT.'vendor/autoload.php';

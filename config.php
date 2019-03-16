@@ -1,9 +1,10 @@
 <?php
 return [
-    'database' => [
+    'db' => [
         'host' => 'localhost',
-        'user' => 'dzfilms',
-        'password' => 'dzfilms',
-        'port' => 3306
+        'username' => 'dzfilms',
+        'pass' => 'dzfilms',
+        'port' => 3306,
+        'dbName' => 'dzfilms'
     ]
 ];
