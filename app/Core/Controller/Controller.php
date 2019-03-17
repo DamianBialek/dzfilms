@@ -15,8 +15,6 @@ abstract class Controller
 
     public function render($name, $params = [])
     {
-        $params['user'] = $_SESSION['login'];
-
         $this->view->render($name, $params);
     }
 

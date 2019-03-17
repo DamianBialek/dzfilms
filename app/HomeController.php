@@ -9,8 +9,6 @@ class HomeController extends Controller
         $movie = new \Movie\Model\MovieModel();
         $movies = $movie->getAll();
 
-        \Tools\Debug::dump($movies);
-
         $this->render('index.php', ['movies' => $movies]);
     }
 }
