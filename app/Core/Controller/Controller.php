@@ -6,8 +6,6 @@ abstract class Controller
 {
     protected $view;
 
-    abstract public function index();
-
     public function __construct()
     {
         $this->view = new \Core\View();

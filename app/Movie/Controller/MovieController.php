@@ -7,13 +7,10 @@ use Tools\Debug;
 
 class MovieController extends \Core\Controller\Controller
 {
-    public function index()
+    public function show($params)
     {
-        if(!filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT))
-            exit();
-
         $movie = new MovieModel();
-        $movie = $movie->get($_GET['id']);
+        $movie = $movie->get($params['id']);
 
         Debug::dump($movie);
     }

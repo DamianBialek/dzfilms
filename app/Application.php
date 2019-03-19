@@ -12,7 +12,8 @@ class Application {
         $this->loadConfig();
     }
     
-    private function loadConfig(){
+    private function loadConfig()
+    {
         $fileName = ROOT.'config.php';
         
         if(file_exists($fileName)){
@@ -23,33 +24,25 @@ class Application {
         throw new Exception("File ".$fileName.' Not Found');
     }
 
-    public function run()
+    private function loadRoutes()
     {
-        $controllerName = (isset($_GET['mod']) && $_GET['mod'] ? $_GET['mod'] : 'home');
+        $fileName = __DIR__.'/routes.php';
 
-        $map = [
-            "home" => HomeController::class,
-            "movie" => MovieController::class
-        ];
-
-        if(!isset($map[$controllerName])){
-            header("Location: index.php");
-            exit();
+        if(file_exists($fileName)){
+            return include $fileName;
         }
 
-        $controllerName = $map[$controllerName];
+        throw new Exception("File ".$fileName.' Not Found');
+    }
 
-        $action = (isset($_GET['a']) && $_GET['a'] ? $_GET['a'] : 'index');
+    public function run()
+    {
+        $request = new \Router\RouteRequest();
+        $router = new \Router\Router($request, $this->loadRoutes());
 
-//        if(!$this->isAuth() && $controllerName !== AuthController::class)
-//            $this->redirectToAuth();
+        $route = $router->run();
 
-        $controller = new $controllerName();
-        
-        if(method_exists($controller, $action))
-            $controller->$action();
-        else
-            $controller->index();    
+        call_user_func_array($route->getCallback(), [$route->getParsedParams()]);
     }
 
     public function redirectToAuth()
