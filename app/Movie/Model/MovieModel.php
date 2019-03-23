@@ -19,6 +19,6 @@ class MovieModel extends \Core\Model\MainModel
 
         $query = "SELECT * FROM `".self::TABLENAME."` WHERE `id` = {$id}";
 
-        return $this->dbSelectRow($query);
+        return $this->dbSelectRow($query, MYSQLI_ASSOC);
     }
 }
