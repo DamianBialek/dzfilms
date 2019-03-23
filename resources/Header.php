@@ -45,8 +45,15 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 
         </form>
+        <?php if(empty($_SESSION['user'])): ?>
         <div class="sign-up">
-            <a class="nav-link" href="#">Zaloguj</a>
+            <a class="nav-link" href="login">Zaloguj się</a>
         </div>
+        <?php else: ?>
+            <div class="user ml-3">
+                Zalogowany jako: <b><?=$_SESSION['user']['nick']?></b>
+                <a class="nav-link d-inline-block" href="logout">Wyloguj się</a>
+            </div>
+        <?php endif; ?>
     </div>
 </nav>
