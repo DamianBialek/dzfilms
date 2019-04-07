@@ -21,4 +21,19 @@ class MovieModel extends \Core\Model\MainModel
 
         return $this->dbSelectRow($query, MYSQLI_ASSOC);
     }
+    
+    public function getNewest()
+    {
+        $query = "SELECT movies.*, cat.name AS category_name FROM `".self::TABLENAME."` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id ORDER BY `id` DESC LIMIT 4";
+ 
+        return  $this->dbSelectRows($query, MYSQLI_ASSOC);
+    }
+    public function search($q)
+    {
+        $q = $this->dbSanitize($q);
+ 
+        $query = "SELECT movies.*, cat.name AS category_name FROM `".self::TABLENAME."` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id WHERE movies.title LIKE '%{$q}%' OR movies.description LIKE '%{$q}%'";
+ 
+        return $this->dbSelectRows($query, MYSQLI_ASSOC);
+    }
 }

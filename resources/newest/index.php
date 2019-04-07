@@ -1,7 +1,7 @@
-<?php
-include_once 'Header.php';
-?>
-<main class="container mt-3">
+<?php include __DIR__.'/../Header.php'; ?>
+
+  <main class="container mt-3">
+      <h1 class="text-center">Najnowsze filmy</h1>
     <div class="row">
         <?php if(!empty($movies)) foreach ($movies as $movie): ?>
             <div class=" col-sm-6 col-md-4 col-lg-3 py-3 movie text-center">
@@ -12,15 +12,18 @@ include_once 'Header.php';
                     </div>
                 </a>
                 <span class="movie-price my-2"><?=$movie['price']?> PLN</span>
-                 <?php if(!empty($_SESSION['user'])): ?>
+               <?php if(!empty($_SESSION['user'])): ?>
                 <a role="button" href="#" class="btn btn-danger my-1 btn-block <?=(!$movie['available'] ? 'disabled' : '')?>" <?=(!$movie['available'] ? 'aria-disabled="true"' : '')?>>Wypożycz</a>
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>
     </div>
 </main>
-<?php
-include_once 'Footer.html';
-?>
+
+
+
+
+<?php include __DIR__.'/../Footer.html' ?>
+
 
 

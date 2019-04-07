@@ -62,6 +62,10 @@ CREATE TABLE `customers` (
   `nick` varchar(32) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+
+
+INSERT INTO `customers` (`id`, `email`, `password`, `nick`) VALUES (NULL, 'test@test.pl', '$2y$10$4YpzcLxf2yRmkFuzN7v3B.3vWLEQiTLfItgvfl6nMRUyxfjN7/8tW', 'test')
+
 -- --------------------------------------------------------
 
 --

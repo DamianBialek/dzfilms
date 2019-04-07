@@ -33,6 +33,8 @@ class MySQLDB {
         else{
             $this->con = self::$instance;
         }
+        
+        $this->con->set_charset("utf8");
     }
 
 

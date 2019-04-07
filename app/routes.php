@@ -10,6 +10,16 @@ $routeCollections->get(new \Router\Route([
     'name' => "movie",
     'callback' => 'Movie\\Controller\\MovieController@show'
 ]));
+$routeCollections->get(new \Router\Route([
+    'path' => '/newest',
+    'name' => "newestMovie",
+    'callback' => 'Movie\\Controller\\MovieController@newest'
+]));
+$routeCollections->get(new \Router\Route([
+    'path' => '/search',
+    'name' => "search",
+    'callback' => 'Movie\\Controller\\MovieController@search'
+]));
 
 //User
 $routeCollections->get(new \Router\Route([
