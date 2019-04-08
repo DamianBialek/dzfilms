@@ -64,7 +64,7 @@ CREATE TABLE `customers` (
 
 
 
-INSERT INTO `customers` (`id`, `email`, `password`, `nick`) VALUES (NULL, 'test@test.pl', '$2y$10$4YpzcLxf2yRmkFuzN7v3B.3vWLEQiTLfItgvfl6nMRUyxfjN7/8tW', 'test')
+INSERT INTO `customers` (`id`, `email`, `password`, `nick`) VALUES (1, 'test@test.pl', '$2y$10$4YpzcLxf2yRmkFuzN7v3B.3vWLEQiTLfItgvfl6nMRUyxfjN7/8tW', 'test');
 
 -- --------------------------------------------------------
 
