@@ -3,6 +3,8 @@
 
 namespace Core\Model\Database;
 
+use Tools\Debug;
+
 class MySQLDB {
     private static $instance;
 
@@ -51,7 +53,10 @@ class MySQLDB {
     public function dbInsert($query)
     {
         $result = $this->dbQuery($query);
-        
+
+        if(!$result)
+            return false;
+
         return $this->con->insert_id;
     }
     
@@ -103,6 +108,14 @@ class MySQLDB {
 
     public function dbSanitize($variable)
     {
-        return $this->con->real_escape_string($variable);
+        if(!is_array($variable))
+            return $this->con->real_escape_string($variable);
+
+        if(!empty($variable))
+            foreach ($variable as $key => $value) {
+                $variable[$key] = $this->con->real_escape_string($value);
+            }
+
+        return $variable;
     }
 }

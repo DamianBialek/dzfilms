@@ -1,4 +1,5 @@
 <?php
+
 namespace Movie\Model;
 
 
@@ -8,32 +9,42 @@ class MovieModel extends \Core\Model\MainModel
 
     public function getAll()
     {
-        $query = "SELECT movies.*, cat.name AS category_name FROM `".self::TABLENAME."` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id";
+        $query = "SELECT movies.*, cat.name AS category_name FROM `" . self::TABLENAME . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id";
 
-        return  $this->dbSelectRows($query, MYSQLI_ASSOC);
+        return $this->dbSelectRows($query, MYSQLI_ASSOC);
     }
 
     public function get($id)
     {
         $id = $this->dbSanitize($id);
 
-        $query = "SELECT * FROM `".self::TABLENAME."` WHERE `id` = {$id}";
+        $query = "SELECT * FROM `" . self::TABLENAME . "` WHERE `id` = {$id}";
 
         return $this->dbSelectRow($query, MYSQLI_ASSOC);
     }
-    
+
     public function getNewest()
     {
-        $query = "SELECT movies.*, cat.name AS category_name FROM `".self::TABLENAME."` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id ORDER BY `id` DESC LIMIT 4";
- 
-        return  $this->dbSelectRows($query, MYSQLI_ASSOC);
+        $query = "SELECT movies.*, cat.name AS category_name FROM `" . self::TABLENAME . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id ORDER BY `id` DESC LIMIT 4";
+
+        return $this->dbSelectRows($query, MYSQLI_ASSOC);
     }
+
     public function search($q)
     {
         $q = $this->dbSanitize($q);
- 
-        $query = "SELECT movies.*, cat.name AS category_name FROM `".self::TABLENAME."` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id WHERE movies.title LIKE '%{$q}%' OR movies.description LIKE '%{$q}%'";
- 
+
+        $query = "SELECT movies.*, cat.name AS category_name FROM `" . self::TABLENAME . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id WHERE movies.title LIKE '%{$q}%' OR movies.description LIKE '%{$q}%'";
+
         return $this->dbSelectRows($query, MYSQLI_ASSOC);
+    }
+
+    public function create($data)
+    {
+        $data = $this->dbSanitize($data);
+
+        $query = 'INSERT INTO `movies` SET `title` = "'.$data['title'].'", `description` = "'.$data['description'].'", `thumbnail` = "'.$data['thumbnail'].'", `price` = "'.$data['price'].'", `category_id` = 1';
+
+        return $this->dbInsert($query);
     }
 }

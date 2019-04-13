@@ -2,6 +2,8 @@
 session_start();
 define("ROOT", __DIR__.'/');
 
+error_reporting(E_ALL & ~E_NOTICE);
+
 include ROOT.'vendor/autoload.php';
 
 try{
