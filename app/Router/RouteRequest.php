@@ -103,4 +103,10 @@ class RouteRequest
     {
         return $this->requestParams;
     }
+
+    public function getBaseUrl()
+    {
+        $baseUrl = $_SERVER['SCRIPT_NAME'];
+        return str_replace(basename($baseUrl), '', $baseUrl);
+    }
 }

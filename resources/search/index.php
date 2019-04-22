@@ -8,7 +8,7 @@
         <?php foreach ($movies as $movie): ?>
             <div class="row">
                 <div class="col-md-3">
-                    <img src="<?=$movie['thumbnail']?>" class="img-thumbnail" />
+                    <img src="<?=$movie['thumbnail']?>" class="img-thumbnail" alt="Okładka filmu <?=$movie['title']?>" />
                 </div>
                 <div class="col-md-9">
                     <h1><?=$movie['title']?></h1>
@@ -20,8 +20,8 @@
             </div>
        <?php endforeach; ?>
         <?php else: ?>
-        <h4 class = "text-center" >Nie znaleziono szukanej frazy!</h4>
-        <div class = "text-center"><a href = "/dzfilms/" class="btn btn-outline-dark" >Powrót na stronę główną</a></div>
+        <h4 class="text-center" >Nie znaleziono szukanej frazy!</h4>
+        <div class="text-center"><a href="<?=url('/')?>" class="btn btn-outline-dark" >Powrót na stronę główną</a></div>
     <?php endif; ?>
 </div>
 </main>

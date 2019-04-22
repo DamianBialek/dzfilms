@@ -5,6 +5,7 @@ define("ROOT", __DIR__.'/');
 error_reporting(E_ALL & ~E_NOTICE);
 
 include ROOT.'vendor/autoload.php';
+include ROOT.'app/global_functions.php';
 
 try{
     $app = new Application();

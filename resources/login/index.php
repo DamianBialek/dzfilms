@@ -1,7 +1,7 @@
 <?php include __DIR__.'/../Header.php' ?>
 
 <div class="container d-flex justify-content-center align-items-center my-6">
-        <form class="my-5 text-center" action="login" method="post">
+        <form class="my-5 text-center" action="<?=url('/login')?>" method="post">
             <?php if(!empty($error)): ?>
                 <div class="alert alert-danger" role="alert">
                     <?=$error?>
