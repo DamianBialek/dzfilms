@@ -1,11 +1,10 @@
--- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
+DROP DATABASE IF EXISTS `dzfilms`;
+
 --
--- Host: 127.0.0.1
--- Czas generowania: 17 Mar 2019, 16:30
--- Wersja serwera: 10.1.37-MariaDB
--- Wersja PHP: 7.3.0
+-- Baza danych: `dzfilms`
+--
+CREATE DATABASE `dzfilms` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `dzfilms`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -18,15 +17,25 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-DROP DATABASE IF EXISTS `dzfilms`;
-
---
--- Baza danych: `dzfilms`
---
-CREATE DATABASE `dzfilms` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `dzfilms`;
-
 -- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `admins`
+--
+
+CREATE TABLE `admins` (
+  `id` int(11) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nick` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Zrzut danych tabeli `admins`
+--
+
+INSERT INTO `admins` (`id`, `email`, `password`, `nick`) VALUES
+(1, 'test@test.pl', '$2y$10$4YpzcLxf2yRmkFuzN7v3B.3vWLEQiTLfItgvfl6nMRUyxfjN7/8tW', 'Admin Test');
 
 --
 -- Struktura tabeli dla tabeli `categories`

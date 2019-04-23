@@ -2,6 +2,13 @@
 
 //Admin
 
+//Index
+$routeCollections->get(new \Router\Route([
+    'path' => '/admin',
+    'name' => "AdminDashboardIndex",
+    'callback' => 'Admin\\Dashboard\\Controller\\DashboardController@index'
+]));
+
 //Login
 $routeCollections->get(new \Router\Route([
     'path' => '/admin/login',
