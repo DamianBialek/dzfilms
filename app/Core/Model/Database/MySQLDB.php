@@ -35,8 +35,10 @@ class MySQLDB {
         else{
             $this->con = self::$instance;
         }
-        
-        $this->con->set_charset("utf8");
+
+        $this->con->query("SET NAMES 'utf8'");
+        $this->con->query("SET CHARACTER SET utf8");
+        $this->con->query("SET SESSION collation_connection = 'utf8_unicode_ci'");
     }
 
 

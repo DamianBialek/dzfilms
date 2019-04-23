@@ -32,4 +32,10 @@ abstract class Controller
 
         return false;
     }
+
+    public function redirectTo($path)
+    {
+        header("Location: ".url($path));
+        exit();
+    }
 }

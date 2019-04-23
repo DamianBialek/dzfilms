@@ -39,15 +39,6 @@ $routeCollections->get(new \Router\Route([
 ]));
 
 //Admin
-$routeCollections->get(new \Router\Route([
-    'path' => '/admin',
-    'name' => "Admin",
-    'callback' => 'Admin\\Controller\\AdminController@index'
-]));
-$routeCollections->post(new \Router\Route([
-    'path' => '/admin',
-    'name' => "Admin",
-    'callback' => 'Admin\\Controller\\AdminController@store'
-]));
+include __DIR__.'/adminRoutes.php';
 
 return $routeCollections;

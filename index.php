@@ -4,6 +4,11 @@ define("ROOT", __DIR__.'/');
 
 error_reporting(E_ALL & ~E_NOTICE);
 
+//echo '<pre>';
+//print_r($_SESSION);
+//exit();
+
+
 include ROOT.'vendor/autoload.php';
 include ROOT.'app/global_functions.php';
 
