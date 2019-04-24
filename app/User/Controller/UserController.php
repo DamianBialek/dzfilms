@@ -23,12 +23,12 @@ class UserController extends Controller
 
         $_SESSION['user'] = $user;
 
-        header("Location: /dzfilms/");
+        $this->redirectTo('/');
     }
 
     public function logout()
     {
         unset($_SESSION['user']);
-        header("Location: /dzfilms/");
+        $this->redirectTo('/');
     }
 }

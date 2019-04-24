@@ -59,4 +59,11 @@ class AdminAuthController extends Controller
         unset($_SESSION['admin']);
         $this->redirectTo('admin/login');
     }
+
+    public function render($name, $params = [])
+    {
+        parent::render($name, $params);
+
+        \Notifications::clearAll();
+    }
 }

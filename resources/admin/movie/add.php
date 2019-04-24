@@ -1,4 +1,8 @@
-<?php include __DIR__.'/../header.php' ?>
+<?php include __DIR__.'/../template.php' ?>
+<div class="d-flex justify-content-between align-items-center">
+    <h4>Dodawanie nowego filmu</h4>
+    <a href="<?=url("admin/movies")?>" class="btn btn-primary">Powrót do listy filmów</a>
+</div>
     <div class="container">
         <div class="row">
             <div class="col-md-6 mx-auto mt-3">

@@ -25,6 +25,9 @@ class MovieController extends AdminAuthController
     {
         $model = new \Movie\Model\MovieModel();
         $model->create($params['POST']);
+
+        \Notifications::add('Pomyślnie dodano nowy film !', 'success', 'admin');
+
         $this->redirectTo('admin/movies');
     }
 }

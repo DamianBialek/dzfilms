@@ -23,4 +23,19 @@
             </div>
         </header>
         <div class="main-container mt-3">
+            <?php if($notifications = Notifications::getAll('admin')): ?>
+                <div class="notification-box">
+                    <?php foreach ($notifications as $notification): ?>
+                        <?php if($notification['type'] == 'success'): ?>
+                            <div class="alert alert-success" role="alert">
+                                <?=$notification['message']?>
+                            </div>
+                        <?php else: ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?=$notification['message']?>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
 
