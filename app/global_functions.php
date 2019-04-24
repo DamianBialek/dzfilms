@@ -5,8 +5,10 @@ function url($path)
     $baseUrl = $request->getBaseUrl();
 
     $url = $baseUrl;
-
-    $url .= str_replace($url, '', trim(trim($path, '/')));
+	
+	$url .= $path;
+	
+	$url = str_replace('//', '/', $url);
 
     return $url;
 }
