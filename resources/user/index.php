@@ -1,8 +1,21 @@
-<?php include __DIR__.'/../Header.php'; ?>
+<?php include __DIR__.'/../Header.php';?>
 <main class="container mt-3">
     <div class="row">
         <div class="col-md-8">
-            <h3 class="text-center">Aktualnie wypożyczone filmy</h3>
+            <h1 class="text-center">Aktualnie wypożyczone filmy</h1>
+            <?php if(!empty($movies)): ?>
+                <?php foreach ($movies as $movie): ?>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="<?=$movie['thumbnail']?>" class="img-thumbnail" alt="Okładka filmu <?=$movie['title']?>" />
+                        </div>
+                        <div class="col-md-9">
+                            <h3><?=$movie['title']?></h3>
+                            <p><?=$movie['description']?></p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
         <div class="col-md-4">
             <div class="text-center">

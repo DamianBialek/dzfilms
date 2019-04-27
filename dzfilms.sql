@@ -68,7 +68,8 @@ CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `nick` varchar(32) COLLATE utf8_unicode_ci NOT NULL
+  `nick` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `account_balance` decimal(10,2) NOT NULL DEFAULT '100.00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
@@ -88,7 +89,8 @@ CREATE TABLE `movies` (
   `thumbnail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `price` decimal(6,2) NOT NULL DEFAULT '0.00',
   `category_id` int(11) NOT NULL,
-  `available` int(1) NOT NULL DEFAULT '1'
+  `available` int(1) NOT NULL DEFAULT '1',
+  `trailer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --

@@ -25,4 +25,11 @@ class UserModel extends MainModel
 
         return $user;
     }
+
+    public function getUserMovies($customerId)
+    {
+        $query = "SELECT mc.*, m.title, m.thumbnail, m.description FROM movies_customers AS mc LEFT JOIN movies as m ON m.id = mc.movie_id WHERE mc.customer_id = '".$customerId."'";
+
+        return $this->dbSelectRows($query, MYSQLI_ASSOC);
+    }
 }

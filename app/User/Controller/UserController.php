@@ -35,8 +35,9 @@ class UserController extends Controller
     public function myAccount()
     {
         $this->isAuth();
-
-        $this->render("user/index.php");
+        $user = new UserModel();
+        $userMovies = $user->getUserMovies($_SESSION['user']['id']);
+        $this->render("user/index.php", ['movies' => $userMovies]);
     }
 
     public function isAuth()

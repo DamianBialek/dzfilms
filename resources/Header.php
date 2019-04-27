@@ -28,17 +28,17 @@
                     <div class="dropdown-divider"></div>
                 </div>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Statystyki
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Najczesciej wypozyczany</a>
-                    <a class="dropdown-item" href="#">Najmniej wypozyczany</a>
-                    <div class="dropdown-divider"></div>
-                </div>
-            </li>
+<!--            <li class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"-->
+<!--                   aria-haspopup="true" aria-expanded="false">-->
+<!--                    Statystyki-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                    <a class="dropdown-item" href="#">Najczesciej wypozyczany</a>-->
+<!--                    <a class="dropdown-item" href="#">Najmniej wypozyczany</a>-->
+<!--                    <div class="dropdown-divider"></div>-->
+<!--                </div>-->
+<!--            </li>-->
         </ul>
         <form class="form-inline my-2 my-lg-0" method="get" action="<?=url('/search')?>">
             <input class="form-control mr-sm-2" type="search" placeholder="Wyszukaj" aria-label="Wyszukaj" name = "q">
