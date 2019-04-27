@@ -34,10 +34,11 @@ class UserController extends Controller
 
     public function myAccount()
     {
-        $this->isAuth();
-        $user = new UserModel();
-        $userMovies = $user->getUserMovies($_SESSION['user']['id']);
-        $this->render("user/index.php", ['movies' => $userMovies]);
+        $user = $this->isAuth();
+        $userModel = new UserModel();
+        $userMovies = $userModel->getUserMovies($user['id']);
+        $sum = $userModel->getUserMoviesSum($user['id'])[0];
+        $this->render("user/index.php", ['movies' => $userMovies, 'user' => $user, 'sum' => $sum]);
     }
 
     public function isAuth()
@@ -45,6 +46,6 @@ class UserController extends Controller
         if(empty($_SESSION['user']))
             $this->redirectTo('/login');
         else
-            return true;
+            return $_SESSION['user'];
     }
 }

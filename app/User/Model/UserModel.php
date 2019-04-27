@@ -12,7 +12,7 @@ class UserModel extends MainModel
         $login = $this->dbSanitize($login);
         $pass = $this->dbSanitize($pass);
 
-        $query = "SELECT `id`, `nick`, `password` FROM `".self::TABLENAME."` WHERE `email` = '{$login}'";
+        $query = "SELECT `id`, `nick`, `password`, `account_balance` FROM `".self::TABLENAME."` WHERE `email` = '{$login}'";
         $user = $this->dbSelectRow($query);
 
         if(!$user)
@@ -31,5 +31,12 @@ class UserModel extends MainModel
         $query = "SELECT mc.*, m.title, m.thumbnail, m.description FROM movies_customers AS mc LEFT JOIN movies as m ON m.id = mc.movie_id WHERE mc.customer_id = '".$customerId."'";
 
         return $this->dbSelectRows($query, MYSQLI_ASSOC);
+    }
+
+    public function getUserMoviesSum($customerId)
+    {
+        $query = "SELECT sum(m.price) as `sum` FROM movies_customers AS mc LEFT JOIN movies as m ON m.id = mc.movie_id WHERE mc.customer_id = '{$customerId}'";
+
+        return $this->dbSelectRow($query);
     }
 }

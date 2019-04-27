@@ -19,10 +19,10 @@
         </div>
         <div class="col-md-4">
             <div class="text-center">
-                <h6 class="d-inline-block">Stan twojego konta:</h6><h5 class="d-inline-block ml-2"><strong>25,98 zł</strong></h5>
+                <h6 class="d-inline-block">Stan twojego konta:</h6><h5 class="d-inline-block ml-2"><strong><?=number_format($user['account_balance'], 2, ",", '')?> zł</strong></h5>
             </div>
             <div class="text-center">
-                <h6 class="d-inline-block">Wypożyczyłeś filmy za:</h6><h5 class="d-inline-block ml-2"><strong>135,65 zł</strong></h5>
+                <h6 class="d-inline-block">Wypożyczyłeś filmy za:</h6><h5 class="d-inline-block ml-2"><strong><?=number_format($sum, 2, ",", '')?> zł</strong></h5>
             </div>
         </div>
     </div>
