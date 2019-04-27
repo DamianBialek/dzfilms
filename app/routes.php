@@ -37,6 +37,11 @@ $routeCollections->get(new \Router\Route([
     'name' => "UserLogout",
     'callback' => 'User\\Controller\\UserController@logout'
 ]));
+$routeCollections->get(new \Router\Route([
+    'path' => '/myaccount',
+    'name' => "UserAccount",
+    'callback' => 'User\\Controller\\UserController@myAccount'
+]));
 
 //Admin
 include __DIR__.'/adminRoutes.php';

@@ -51,6 +51,7 @@
         <?php else: ?>
             <div class="user ml-3">
                 Zalogowany jako: <b><?=$_SESSION['user']['nick']?></b>
+                <a class="nav-link d-inline-block" href="<?=url('/myaccount')?>">Moje konto</a>
                 <a class="nav-link d-inline-block" href="<?=url('/logout')?>">Wyloguj się</a>
             </div>
         <?php endif; ?>

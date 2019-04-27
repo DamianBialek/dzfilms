@@ -31,4 +31,19 @@ class UserController extends Controller
         unset($_SESSION['user']);
         $this->redirectTo('/');
     }
+
+    public function myAccount()
+    {
+        $this->isAuth();
+
+        $this->render("user/index.php");
+    }
+
+    public function isAuth()
+    {
+        if(empty($_SESSION['user']))
+            $this->redirectTo('/login');
+        else
+            return true;
+    }
 }
