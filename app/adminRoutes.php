@@ -49,3 +49,18 @@ $routeCollections->post(new \Router\Route([
     'name' => "AdminMoviesAddPost",
     'callback' => 'Admin\\Movie\\Controller\\MovieController@store'
 ]));
+$routeCollections->get(new \Router\Route([
+    'path' => '/admin/movies/edit/@id',
+    'name' => "AdminMoviesEdit",
+    'callback' => 'Admin\\Movie\\Controller\\MovieController@show'
+]));
+$routeCollections->post(new \Router\Route([
+    'path' => '/admin/movies/update',
+    'name' => "AdminMoviesUpdate",
+    'callback' => 'Admin\\Movie\\Controller\\MovieController@update'
+]));
+$routeCollections->get(new \Router\Route([
+    'path' => '/admin/movies/remove/@id',
+    'name' => "AdminMoviesRemove",
+    'callback' => 'Admin\\Movie\\Controller\\MovieController@destroy'
+]));

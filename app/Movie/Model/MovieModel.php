@@ -7,9 +7,12 @@ class MovieModel extends \Core\Model\MainModel
 {
     const TABLENAME = "movies";
 
-    public function getAll()
+    public function getAll($orderByNewest = false)
     {
         $query = "SELECT movies.*, cat.name AS category_name FROM `" . self::TABLENAME . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id";
+
+        if($orderByNewest)
+            $query .= ' ORDER BY movies.id DESC';
 
         return $this->dbSelectRows($query, MYSQLI_ASSOC);
     }
@@ -43,8 +46,26 @@ class MovieModel extends \Core\Model\MainModel
     {
         $data = $this->dbSanitize($data);
 
-        $query = 'INSERT INTO `movies` SET `title` = "'.$data['title'].'", `description` = "'.$data['description'].'", `thumbnail` = "'.$data['thumbnail'].'", `price` = "'.$data['price'].'", `category_id` = 1';
+        $query = 'INSERT INTO `movies` SET `title` = "'.$data['title'].'", `description` = "'.$data['description'].'", `thumbnail` = "'.$data['thumbnail'].'", `price` = "'.$data['price'].'", `category_id` = 1, `active` = "'.$data['active'].'", `trailer` = "'.$data['trailer'].'"';
 
         return $this->dbInsert($query);
+    }
+
+    public function update($data)
+    {
+        $data = $this->dbSanitize($data);
+
+        $query = 'UPDATE `movies` SET `title` = "'.$data['title'].'", `description` = "'.$data['description'].'", `thumbnail` = "'.$data['thumbnail'].'", `price` = "'.$data['price'].'", `category_id` = 1, `active` = "'.$data['active'].'", `trailer` = "'.$data['trailer'].'" WHERE `id` = "'.$data['id'].'"';
+
+        return $this->dbUpdate($query);
+    }
+
+    public function destroy($id)
+    {
+        $data = $this->dbSanitize($id);
+
+        $query = 'DELETE FROM `movies` WHERE `id` = "'.$id.'"';
+
+        return $this->dbDelete($query);
     }
 }
