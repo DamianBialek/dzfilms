@@ -90,7 +90,8 @@ CREATE TABLE `movies` (
   `price` decimal(6,2) NOT NULL DEFAULT '0.00',
   `category_id` int(11) NOT NULL,
   `available` int(1) NOT NULL DEFAULT '1',
-  `trailer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `trailer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `active` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --

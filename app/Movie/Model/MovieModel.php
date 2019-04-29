@@ -7,9 +7,12 @@ class MovieModel extends \Core\Model\MainModel
 {
     const TABLENAME = "movies";
 
-    public function getAll($orderByNewest = false)
+    public function getAll($orderByNewest = false, $onlyActive = false)
     {
         $query = "SELECT movies.*, cat.name AS category_name FROM `" . self::TABLENAME . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id";
+
+        if($onlyActive)
+            $query .= ' WHERE movies.active = 1';
 
         if($orderByNewest)
             $query .= ' ORDER BY movies.id DESC';

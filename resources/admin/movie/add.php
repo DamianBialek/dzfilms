@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="trailer">Link do zwiastunu filmu z YT (tylko pogrubiona część - https://www.youtube.com/watch?v=<b>c7AvpuBAR34</b>)</label>
-                        <input name="trailer" required type="text" class="form-control" id="trailer" placeholder="Wklej link do zwiastunu filmu">
+                        <input name="trailer" type="text" class="form-control" id="trailer" placeholder="Wklej link do zwiastunu filmu">
                     </div>
                     <div class="form-group">
                         <label for="active">Aktywny</label>
