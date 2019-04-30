@@ -1,10 +1,9 @@
 <?php
 namespace User\Controller;
 
-use Core\Controller\Controller;
 use User\Model\UserModel;
 
-class UserController extends Controller
+class UserController extends \FrontController
 {
     public function login()
     {
@@ -38,14 +37,7 @@ class UserController extends Controller
         $userModel = new UserModel();
         $userMovies = $userModel->getUserMovies($user['id']);
         $sum = $userModel->getUserMoviesSum($user['id'])[0];
+        $user = $userModel->get($user['id']);
         $this->render("user/index.php", ['movies' => $userMovies, 'user' => $user, 'sum' => $sum]);
-    }
-
-    public function isAuth()
-    {
-        if(empty($_SESSION['user']))
-            $this->redirectTo('/login');
-        else
-            return $_SESSION['user'];
     }
 }

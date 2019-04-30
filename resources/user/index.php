@@ -1,6 +1,21 @@
 <?php include __DIR__.'/../Header.php';?>
 <main class="container mt-3">
     <div class="row">
+        <?php if($notifications = Notifications::getAll('customer')): ?>
+            <div class="notification-box w-100 text-center">
+                <?php foreach ($notifications as $notification): ?>
+                    <?php if($notification['type'] == 'success'): ?>
+                        <div class="alert alert-success" role="alert">
+                            <?=$notification['message']?>
+                        </div>
+                    <?php else: ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?=$notification['message']?>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
         <div class="col-md-8">
             <h1 class="text-center">Aktualnie wypożyczone filmy</h1>
             <?php if(!empty($movies)): ?>

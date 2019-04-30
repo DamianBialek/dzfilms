@@ -14,7 +14,7 @@
                     <h1><?=$movie['title']?></h1>
                     <p><?=$movie['description']?></p>
                     <?php if(!empty($_SESSION['user'])): ?>
-                <a role="button" href="#" class="btn btn-danger my-3  <?=(!$movie['available'] ? 'disabled' : '')?>" <?=(!$movie['available'] ? 'aria-disabled="true"' : '')?>>Wypożycz</a>
+                <a role="button" href="<?=url('/movie/rent/'.$movie['id'])?>" class="btn btn-danger my-3  <?=(!$movie['available'] ? 'disabled' : '')?>" <?=(!$movie['available'] ? 'aria-disabled="true"' : '')?>>Wypożycz</a>
                 <?php endif; ?>
                 </div>
             </div>

@@ -1,8 +1,6 @@
 <?php
 
-use Core\Controller\Controller;
-
-class HomeController extends Controller
+class HomeController extends FrontController
 {
     public function index()
     {

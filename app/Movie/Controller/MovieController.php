@@ -5,7 +5,7 @@ namespace Movie\Controller;
 use Movie\Model\MovieModel;
 use Tools\Debug;
  
-class MovieController extends \Core\Controller\Controller
+class MovieController extends \FrontController
 {
     public function show($params)
     {
@@ -22,7 +22,8 @@ class MovieController extends \Core\Controller\Controller
  
         $this->render('newest/index.php', ['movies' => $movies]);
     }
-     public function search($params)
+
+    public function search($params)
     {
         $q = $params['GET']['q'];
  
@@ -35,5 +36,28 @@ class MovieController extends \Core\Controller\Controller
         $movies = $movie->search($params['GET']['q']);
  
         $this->render('search/index.php', ['q' => $q, 'movies' => $movies]);
+    }
+
+    public function rent($params)
+    {
+        $user = $this->isAuth();
+        $model = new MovieModel();
+        $movie = $model->get($params['id']);
+
+        if($movie['available'] == '0')
+            $this->redirectTo('/');
+
+        if(floatval($user['account_balance']) < floatval($movie['price'])) {
+            \Notifications::add('Nie posiadasz wystarczającej ilości środków na koncie aby wypożyczyć ten film !', 'error', 'customer');
+            $this->redirectTo('/');
+        }
+
+        $movie['available'] = 0;
+        $user['account_balance'] = floatval($user['account_balance']) - floatval($movie['price']);
+
+        $model->rentAMovie($movie, $user);
+
+        \Notifications::add('Wypożyczyłeś nowy film', 'success', 'customer');
+        $this->redirectTo('/myaccount');
     }
 }

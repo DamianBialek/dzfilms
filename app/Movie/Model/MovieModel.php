@@ -49,7 +49,7 @@ class MovieModel extends \Core\Model\MainModel
     {
         $data = $this->dbSanitize($data);
 
-        $query = 'INSERT INTO `movies` SET `title` = "'.$data['title'].'", `description` = "'.$data['description'].'", `thumbnail` = "'.$data['thumbnail'].'", `price` = "'.$data['price'].'", `category_id` = 1, `active` = "'.$data['active'].'", `trailer` = "'.$data['trailer'].'"';
+        $query = 'INSERT INTO `'.self::TABLENAME.'` SET `title` = "'.$data['title'].'", `description` = "'.$data['description'].'", `thumbnail` = "'.$data['thumbnail'].'", `price` = "'.$data['price'].'", `category_id` = 1, `active` = "'.$data['active'].'", `trailer` = "'.$data['trailer'].'"';
 
         return $this->dbInsert($query);
     }
@@ -58,17 +58,32 @@ class MovieModel extends \Core\Model\MainModel
     {
         $data = $this->dbSanitize($data);
 
-        $query = 'UPDATE `movies` SET `title` = "'.$data['title'].'", `description` = "'.$data['description'].'", `thumbnail` = "'.$data['thumbnail'].'", `price` = "'.$data['price'].'", `category_id` = 1, `active` = "'.$data['active'].'", `trailer` = "'.$data['trailer'].'" WHERE `id` = "'.$data['id'].'"';
+        $query = 'UPDATE `'.self::TABLENAME.'` SET `title` = "'.$data['title'].'", `description` = "'.$data['description'].'", `thumbnail` = "'.$data['thumbnail'].'", `price` = "'.$data['price'].'", `category_id` = 1, `active` = "'.$data['active'].'", `trailer` = "'.$data['trailer'].'" WHERE `id` = "'.$data['id'].'"';
 
         return $this->dbUpdate($query);
     }
 
     public function destroy($id)
     {
-        $data = $this->dbSanitize($id);
+        $id = $this->dbSanitize($id);
 
-        $query = 'DELETE FROM `movies` WHERE `id` = "'.$id.'"';
+        $query = 'DELETE FROM `'.self::TABLENAME.'` WHERE `id` = "'.$id.'"';
 
         return $this->dbDelete($query);
+    }
+
+    public function rentAMovie($movie, $customer)
+    {
+        $movie = $this->dbSanitize($movie);
+        $customer = $this->dbSanitize($customer);
+
+        $query = 'UPDATE `'.self::TABLENAME.'` SET `available` = 0 WHERE `id` = "'.$movie['id'].'"';
+        $this->dbUpdate($query);
+
+        $query = 'UPDATE `customers` SET `account_balance` = "'.$customer['account_balance'].'" WHERE `id` = "'.$customer['id'].'"';
+        $this->dbUpdate($query);
+
+        $query = 'INSERT INTO `movies_customers` SET `movie_id` = "'.$movie['id'].'", `customer_id` = "'.$customer['id'].'"';
+        return $this->dbInsert($query);
     }
 }

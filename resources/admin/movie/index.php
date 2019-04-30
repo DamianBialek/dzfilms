@@ -18,6 +18,7 @@
                 <th>Tytuł filmu</th>
                 <th>Krótki opis</th>
                 <th class="text-center">Aktywny</th>
+                <th class="text-center">Wypożyczony</th>
                 <th class="text-center">Akcja</th>
             </tr>
             </thead>
@@ -29,6 +30,7 @@
                     <td><?= $movie['title'] ?></td>
                     <td><?= mb_substr($movie['description'], 0, 51, 'utf-8') ?>...</td>
                     <td class="text-center"><?=$movie['active'] == '1' ? 'Tak' : 'Nie'?></td>
+                    <td class="text-center"><?=$movie['available'] == '0' ? 'Tak' : 'Nie'?></td>
                     <td class="text-center align-middle">
                         <a href="<?= url('/admin/movies/edit/' . $movie['id']) ?>" rel="button" class="btn btn-primary">Edytuj</a>
                         <a data-movie-title="<?= $movie['title'] ?>" data-action="remove"

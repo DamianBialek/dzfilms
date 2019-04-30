@@ -7,11 +7,6 @@ use Core\Controller\Controller;
 
 class AdminAuthController extends Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
    public function __call($name, $arguments)
    {
        if ($arguments[1]->getPathInfo() !== '/admin/login' && !$this->checkAuth())
