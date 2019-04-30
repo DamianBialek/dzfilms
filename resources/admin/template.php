@@ -12,6 +12,9 @@
                 <li class="list-group-item">
                     <a href="<?=url("admin/movies")?>">Zarządzaj filmami</a>
                 </li>
+                <li class="list-group-item">
+                    <a href="<?=url("admin/customers")?>">Zarządzaj klientami</a>
+                </li>
             </ul>
         </nav>
     </div>

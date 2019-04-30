@@ -64,3 +64,35 @@ $routeCollections->get(new \Router\Route([
     'name' => "AdminMoviesRemove",
     'callback' => 'Admin\\Movie\\Controller\\MovieController@destroy'
 ]));
+
+//Customers
+$routeCollections->get(new \Router\Route([
+    'path' => '/admin/customers',
+    'name' => "AdminCustomers",
+    'callback' => 'Admin\\Customers\\Controller\\CustomerController@index'
+]));
+$routeCollections->get(new \Router\Route([
+    'path' => '/admin/customers/create',
+    'name' => "AdminCustomerCreate",
+    'callback' => 'Admin\\Customers\\Controller\\CustomerController@create'
+]));
+$routeCollections->post(new \Router\Route([
+    'path' => '/admin/customers/create',
+    'name' => "AdminCustomerCreatePost",
+    'callback' => 'Admin\\Customers\\Controller\\CustomerController@store'
+]));
+$routeCollections->get(new \Router\Route([
+    'path' => '/admin/customers/edit/@id',
+    'name' => "AdminCustomersEdit",
+    'callback' => 'Admin\\Customers\\Controller\\CustomerController@show'
+]));
+$routeCollections->post(new \Router\Route([
+    'path' => '/admin/customers/update',
+    'name' => "AdminCustomersUpdate",
+    'callback' => 'Admin\\Customers\\Controller\\CustomerController@update'
+]));
+$routeCollections->get(new \Router\Route([
+    'path' => '/admin/customers/remove/@id',
+    'name' => "AdminCustomersRemove",
+    'callback' => 'Admin\\Customers\\Controller\\CustomerController@destroy'
+]));
