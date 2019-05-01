@@ -85,7 +85,7 @@ class UserModel extends MainModel
 
     public function getUserMovies($customerId)
     {
-        $query = "SELECT mc.*, m.title, m.thumbnail, m.description FROM movies_customers AS mc LEFT JOIN movies as m ON m.id = mc.movie_id WHERE mc.customer_id = '".$customerId."' ORDER BY mc.rental_date DESC";
+        $query = "SELECT mc.*, m.title, m.thumbnail, m.description, m.id AS movie_id FROM movies_customers AS mc LEFT JOIN movies as m ON m.id = mc.movie_id WHERE mc.customer_id = '".$customerId."' AND mc.comm_date IS NULL ORDER BY mc.rental_date DESC";
 
         return $this->dbSelectRows($query, MYSQLI_ASSOC);
     }

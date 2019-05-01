@@ -4,7 +4,8 @@ namespace Movie\Controller;
  
 use Movie\Model\MovieModel;
 use Tools\Debug;
- 
+use User\Model\UserModel;
+
 class MovieController extends \FrontController
 {
     public function show($params)
@@ -42,9 +43,11 @@ class MovieController extends \FrontController
     {
         $user = $this->isAuth();
         $model = new MovieModel();
+        $uModel = new UserModel();
+        $user = $uModel->get($user['id']);
         $movie = $model->get($params['id']);
 
-        if($movie['available'] == '0')
+        if(!$movie || $movie['available'] == '0')
             $this->redirectTo('/');
 
         if(floatval($user['account_balance']) < floatval($movie['price'])) {
@@ -58,6 +61,26 @@ class MovieController extends \FrontController
         $model->rentAMovie($movie, $user);
 
         \Notifications::add('Wypożyczyłeś nowy film', 'success', 'customer');
+        $this->redirectTo('/myaccount');
+    }
+
+    public function give($params)
+    {
+        $user = $this->isAuth();
+        $model = new MovieModel();
+        $uModel = new UserModel();
+        $user = $uModel->get($user['id']);
+        $movie = $model->get($params['id']);
+
+        if(!$movie || $movie['available'] == '1')
+            $this->redirectTo('/');
+
+        $movie['available'] = 1;
+        $user['account_balance'] = floatval($user['account_balance']) + (floatval($movie['price']) / 2);
+
+        $model->giveAMovie($movie, $user);
+
+        \Notifications::add('Prawidłowo zwróciłeś film', 'success', 'customer');
         $this->redirectTo('/myaccount');
     }
 }

@@ -86,4 +86,19 @@ class MovieModel extends \Core\Model\MainModel
         $query = 'INSERT INTO `movies_customers` SET `movie_id` = "'.$movie['id'].'", `customer_id` = "'.$customer['id'].'"';
         return $this->dbInsert($query);
     }
+
+    public function giveAMovie($movie, $customer)
+    {
+        $movie = $this->dbSanitize($movie);
+        $customer = $this->dbSanitize($customer);
+
+        $query = 'UPDATE `'.self::TABLENAME.'` SET `available` = 1 WHERE `id` = "'.$movie['id'].'"';
+        $this->dbUpdate($query);
+
+        $query = 'UPDATE `customers` SET `account_balance` = "'.$customer['account_balance'].'" WHERE `id` = "'.$customer['id'].'"';
+        $this->dbUpdate($query);
+
+        $query = 'UPDATE `movies_customers` SET `comm_date` = CURRENT_TIMESTAMP WHERE `movie_id` = "'.$movie['id'].'" AND `customer_id` = "'.$customer['id'].'"';
+        $this->dbUpdate($query);
+    }
 }

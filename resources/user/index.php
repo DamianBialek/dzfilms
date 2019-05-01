@@ -27,6 +27,7 @@
                         <div class="col-md-9">
                             <h3><?=$movie['title']?></h3>
                             <p><?=$movie['description']?></p>
+                            <div class="text-center"><a href="<?=url('/movie/give/'.$movie['movie_id'])?>" class="btn btn-danger my-1">Oddaj</a></div>
                         </div>
                     </div>
                 <?php endforeach; ?>

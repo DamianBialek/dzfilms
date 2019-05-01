@@ -25,6 +25,11 @@ $routeCollections->get(new \Router\Route([
     'name' => "RentAMovie",
     'callback' => 'Movie\\Controller\\MovieController@rent'
 ]));
+$routeCollections->get(new \Router\Route([
+    'path' => '/movie/give/@id',
+    'name' => "GiveAMovie",
+    'callback' => 'Movie\\Controller\\MovieController@give'
+]));
 
 //User
 $routeCollections->get(new \Router\Route([
