@@ -13,9 +13,12 @@
                 <div class="col-md-9">
                     <h1><?=$movie['title']?></h1>
                     <p><?=$movie['description']?></p>
-                    <?php if(!empty($_SESSION['user'])): ?>
-                <a role="button" href="<?=url('/movie/rent/'.$movie['id'])?>" class="btn btn-danger my-3  <?=(!$movie['available'] ? 'disabled' : '')?>" <?=(!$movie['available'] ? 'aria-disabled="true"' : '')?>>Wypożycz</a>
-                <?php endif; ?>
+                    <div class="d-flex flex-column align-items-center">
+                        <?php if(!empty($_SESSION['user'])): ?>
+                            <a role="button" href="<?=url('/movie/rent/'.$movie['id'])?>" class="btn btn-danger my-3  <?=(!$movie['available'] ? 'disabled' : '')?>" <?=(!$movie['available'] ? 'aria-disabled="true"' : '')?>>Wypożycz</a>
+                        <?php endif; ?>
+                        <a href="<?=url('/movie/'.$movie['id'])?>" class="btn btn-primary my-1">Sprawdź więcej o filmie</a>
+                    </div>
                 </div>
             </div>
        <?php endforeach; ?>

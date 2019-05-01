@@ -83,4 +83,15 @@ class MovieController extends \FrontController
         \Notifications::add('Prawidłowo zwróciłeś film', 'success', 'customer');
         $this->redirectTo('/myaccount');
     }
+
+    public function review($params)
+    {
+        $model = new MovieModel();
+        $movie = $model->get($params['id']);
+
+        $link = 'https://www.google.com/search?q='.$movie['title'].' recenzja';
+
+        header('Location: '.$link);
+        exit();
+    }
 }

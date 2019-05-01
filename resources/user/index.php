@@ -27,7 +27,10 @@
                         <div class="col-md-9">
                             <h3><?=$movie['title']?></h3>
                             <p><?=$movie['description']?></p>
-                            <div class="text-center"><a href="<?=url('/movie/give/'.$movie['movie_id'])?>" class="btn btn-danger my-1">Oddaj</a></div>
+                            <div class="d-flex flex-column align-items-center">
+                                <a href="<?=url('/movie/give/'.$movie['movie_id'])?>" class="btn btn-danger my-1">Oddaj</a>
+                                <a href="<?=url('/movie/'.$movie['movie_id'])?>" class="btn btn-primary my-1">Sprawdź więcej o filmie</a>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
