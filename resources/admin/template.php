@@ -6,13 +6,13 @@
         </div>
         <nav class="navbar-default">
             <ul class="list-group">
-                <li class="list-group-item">
+                <li class="list-group-item <?=$routeName == 'AdminDashboard' ? 'active' : ''?>">
                     <a href="<?=url("admin/dashboard")?>">Strona główna</a>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item <?=$routeName == 'AdminMovies' ? 'active' : ''?>">
                     <a href="<?=url("admin/movies")?>">Zarządzaj filmami</a>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item <?=$routeName == 'AdminCustomers' ? 'active' : ''?>">
                     <a href="<?=url("admin/customers")?>">Zarządzaj klientami</a>
                 </li>
             </ul>

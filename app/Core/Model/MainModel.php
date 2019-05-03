@@ -5,6 +5,8 @@ use Core\Model\Database\MySQLDB;
 
 class MainModel extends  MySQLDB
 {
+    protected $tablename = '';
+
     public function __construct()
     {
         $config = \Config\Config::getConfig("db");
@@ -19,5 +21,15 @@ class MainModel extends  MySQLDB
             }
         }
         return json_encode($var);
+    }
+
+    public function count()
+    {
+        if(empty($this->tablename))
+            return false;
+
+        $query = 'SELECT COUNT(*) as `count` FROM `'.$this->tablename.'`';
+
+        return $this->dbSelectField($query);
     }
 }

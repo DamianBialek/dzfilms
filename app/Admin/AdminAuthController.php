@@ -7,14 +7,18 @@ use Core\Controller\Controller;
 
 class AdminAuthController extends Controller
 {
+    protected $routeName;
    public function __call($name, $arguments)
    {
-       if ($arguments[1]->getPathInfo() !== '/admin/login' && !$this->checkAuth())
+       if ($arguments[1]['request']->getPathInfo() !== '/admin/login' && !$this->checkAuth())
            $this->redirectTo('admin/login');
 
 
-       if(method_exists($this, $name))
+       if(method_exists($this, $name)) {
+           if(!empty($arguments[1]['route']))
+               $this->routeName = $arguments[1]['route']->getName();
            call_user_func_array([$this, $name], $arguments);
+       }
    }
 
     public function checkAuth()
@@ -57,6 +61,7 @@ class AdminAuthController extends Controller
 
     public function render($name, $params = [])
     {
+        $params = array_merge($params, ['routeName' => $this->routeName]);
         parent::render($name, $params);
 
         \Notifications::clearAll();

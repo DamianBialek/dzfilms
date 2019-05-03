@@ -42,7 +42,7 @@ class Application {
 
         $route = $router->run();
 
-        call_user_func_array($route->getCallback(), [$route->getParsedParams(), $request]);
+        call_user_func_array($route->getCallback(), [$route->getParsedParams(), ['request' => $request, 'route' => $route]]);
     }
 
     public function redirectToAuth()

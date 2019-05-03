@@ -5,11 +5,11 @@ namespace Movie\Model;
 
 class MovieModel extends \Core\Model\MainModel
 {
-    const TABLENAME = "movies";
+    protected $tablename = 'movies';
 
     public function getAll($orderByNewest = false, $onlyActive = false)
     {
-        $query = "SELECT movies.*, cat.name AS category_name FROM `" . self::TABLENAME . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id";
+        $query = "SELECT movies.*, cat.name AS category_name FROM `" . $this->tablename . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id";
 
         if($onlyActive)
             $query .= ' WHERE movies.active = 1';
@@ -24,14 +24,14 @@ class MovieModel extends \Core\Model\MainModel
     {
         $id = $this->dbSanitize($id);
 
-        $query = "SELECT * FROM `" . self::TABLENAME . "` WHERE `id` = {$id}";
+        $query = "SELECT * FROM `" . $this->tablename . "` WHERE `id` = {$id}";
 
         return $this->dbSelectRow($query, MYSQLI_ASSOC);
     }
 
     public function getNewest()
     {
-        $query = "SELECT movies.*, cat.name AS category_name FROM `" . self::TABLENAME . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id ORDER BY `id` DESC LIMIT 4";
+        $query = "SELECT movies.*, cat.name AS category_name FROM `" . $this->tablename . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id ORDER BY `id` DESC LIMIT 4";
 
         return $this->dbSelectRows($query, MYSQLI_ASSOC);
     }
@@ -40,7 +40,7 @@ class MovieModel extends \Core\Model\MainModel
     {
         $q = $this->dbSanitize($q);
 
-        $query = "SELECT movies.*, cat.name AS category_name FROM `" . self::TABLENAME . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id WHERE movies.title LIKE '%{$q}%' OR movies.description LIKE '%{$q}%'";
+        $query = "SELECT movies.*, cat.name AS category_name FROM `" . $this->tablename . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id WHERE movies.title LIKE '%{$q}%' OR movies.description LIKE '%{$q}%'";
 
         return $this->dbSelectRows($query, MYSQLI_ASSOC);
     }
@@ -49,7 +49,7 @@ class MovieModel extends \Core\Model\MainModel
     {
         $data = $this->dbSanitize($data);
 
-        $query = 'INSERT INTO `'.self::TABLENAME.'` SET `title` = "'.$data['title'].'", `description` = "'.$data['description'].'", `thumbnail` = "'.$data['thumbnail'].'", `price` = "'.$data['price'].'", `category_id` = 1, `active` = "'.$data['active'].'", `trailer` = "'.$data['trailer'].'"';
+        $query = 'INSERT INTO `'.$this->tablename.'` SET `title` = "'.$data['title'].'", `description` = "'.$data['description'].'", `thumbnail` = "'.$data['thumbnail'].'", `price` = "'.$data['price'].'", `category_id` = 1, `active` = "'.$data['active'].'", `trailer` = "'.$data['trailer'].'"';
 
         return $this->dbInsert($query);
     }
@@ -58,7 +58,7 @@ class MovieModel extends \Core\Model\MainModel
     {
         $data = $this->dbSanitize($data);
 
-        $query = 'UPDATE `'.self::TABLENAME.'` SET `title` = "'.$data['title'].'", `description` = "'.$data['description'].'", `thumbnail` = "'.$data['thumbnail'].'", `price` = "'.$data['price'].'", `category_id` = 1, `active` = "'.$data['active'].'", `trailer` = "'.$data['trailer'].'" WHERE `id` = "'.$data['id'].'"';
+        $query = 'UPDATE `'.$this->tablename.'` SET `title` = "'.$data['title'].'", `description` = "'.$data['description'].'", `thumbnail` = "'.$data['thumbnail'].'", `price` = "'.$data['price'].'", `category_id` = 1, `active` = "'.$data['active'].'", `trailer` = "'.$data['trailer'].'" WHERE `id` = "'.$data['id'].'"';
 
         return $this->dbUpdate($query);
     }
@@ -67,7 +67,7 @@ class MovieModel extends \Core\Model\MainModel
     {
         $id = $this->dbSanitize($id);
 
-        $query = 'DELETE FROM `'.self::TABLENAME.'` WHERE `id` = "'.$id.'"';
+        $query = 'DELETE FROM `'.$this->tablename.'` WHERE `id` = "'.$id.'"';
 
         return $this->dbDelete($query);
     }
@@ -77,7 +77,7 @@ class MovieModel extends \Core\Model\MainModel
         $movie = $this->dbSanitize($movie);
         $customer = $this->dbSanitize($customer);
 
-        $query = 'UPDATE `'.self::TABLENAME.'` SET `available` = 0 WHERE `id` = "'.$movie['id'].'"';
+        $query = 'UPDATE `'.$this->tablename.'` SET `available` = 0 WHERE `id` = "'.$movie['id'].'"';
         $this->dbUpdate($query);
 
         $query = 'UPDATE `customers` SET `account_balance` = "'.$customer['account_balance'].'" WHERE `id` = "'.$customer['id'].'"';
@@ -92,7 +92,7 @@ class MovieModel extends \Core\Model\MainModel
         $movie = $this->dbSanitize($movie);
         $customer = $this->dbSanitize($customer);
 
-        $query = 'UPDATE `'.self::TABLENAME.'` SET `available` = 1 WHERE `id` = "'.$movie['id'].'"';
+        $query = 'UPDATE `'.$this->tablename.'` SET `available` = 1 WHERE `id` = "'.$movie['id'].'"';
         $this->dbUpdate($query);
 
         $query = 'UPDATE `customers` SET `account_balance` = "'.$customer['account_balance'].'" WHERE `id` = "'.$customer['id'].'"';
