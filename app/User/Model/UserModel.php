@@ -17,6 +17,18 @@ class UserModel extends MainModel
         return $this->dbSelectRows($query, MYSQLI_ASSOC);
     }
 
+    public function getAllWithStatistics()
+    {
+        $query = 'SELECT
+                    c.*,
+                    (SELECT COUNT(*) FROM movies_customers WHERE customer_id = c.id) AS `all`,
+                    (SELECT COUNT(*) FROM movies_customers WHERE customer_id = c.id AND comm_date IS NOT NULL) AS `returned`,
+                    (SELECT COUNT(*) FROM movies_customers WHERE customer_id = c.id AND comm_date IS NULL) AS `borrowed`
+                FROM `'.$this->tablename.'` AS c';
+
+        return $this->dbSelectRows($query, MYSQLI_ASSOC);
+    }
+
     public function getByEmail($email)
     {
         $email = $this->dbSanitize($email);

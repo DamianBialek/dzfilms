@@ -12,6 +12,7 @@
                 <th>E-mail</th>
                 <th>Nick</th>
                 <th>Stan konta</th>
+                <th class="text-center">Statystyki wypożyczeń <br /> <span style="color:blue">wszystkie</span>/<span style="color:green">oddane</span>/<span style="color:red">wypożyczone</span></th>
                 <th class="text-center">Akcja</th>
             </tr>
             </thead>
@@ -22,6 +23,11 @@
                     <td><?=$customer['email']?></td>
                     <td><?=$customer['nick']?></td>
                     <td><?=number_format($customer['account_balance'], 2, ",", '')?> zł</td>
+                    <td class="text-center">
+                        <span style="color:blue"><?=$customer['all']?></span> /
+                        <span style="color:green"><?=$customer['returned']?></span> /
+                        <span style="color:red"><?=$customer['borrowed']?></span>
+                    </td>
                     <td class="text-center align-middle">
                         <a href="<?= url('/admin/customers/edit/' . $customer['id']) ?>" rel="button" class="btn btn-primary">Edytuj</a>
                         <a data-customer-nick="<?= $customer['nick'] ?>" data-action="remove"

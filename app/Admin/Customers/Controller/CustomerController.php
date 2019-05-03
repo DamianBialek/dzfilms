@@ -13,7 +13,7 @@ class CustomerController extends AdminAuthController
     protected function index()
     {
         $model = new UserModel();
-        $customers = $model->getAll(true);
+        $customers = $model->getAllWithStatistics();
 
         $this->render('admin/customer/index.php', ['customers' => $customers]);
     }
