@@ -69,13 +69,22 @@ class CustomerController extends AdminAuthController
     protected function destroy($params)
     {
         $model = new UserModel();
-        $movie = $model->get($params['id']);
+        $user = $model->get($params['id']);
 
-        if($movie)
+        if($user)
             $model->destroy($params['id']);
 
         \Notifications::add('Pomyślnie usunięto klienta !', 'success', 'admin');
 
         $this->redirectTo('admin/customers');
+    }
+
+    protected function statistics($params)
+    {
+        $model = new UserModel();
+        $user = $model->getWithStatistics($params['id']);
+        $customerMovies = $model->getAllUserMovies($params['id']);
+
+        $this->render('admin/customer/statistics/index.php', ['customer' => $user, 'customerMovies' => $customerMovies]);
     }
 }

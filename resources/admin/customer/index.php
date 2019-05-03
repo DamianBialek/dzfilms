@@ -29,6 +29,7 @@
                         <span style="color:red"><?=$customer['borrowed']?></span>
                     </td>
                     <td class="text-center align-middle">
+                        <a href="<?= url('/admin/customers/statistics/' . $customer['id']) ?>" rel="button" class="btn btn-info">Statystyki</a>
                         <a href="<?= url('/admin/customers/edit/' . $customer['id']) ?>" rel="button" class="btn btn-primary">Edytuj</a>
                         <a data-customer-nick="<?= $customer['nick'] ?>" data-action="remove"
                            href="<?= url('/admin/customers/remove/' . $customer['id']) ?>" rel="button"

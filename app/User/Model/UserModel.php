@@ -29,6 +29,19 @@ class UserModel extends MainModel
         return $this->dbSelectRows($query, MYSQLI_ASSOC);
     }
 
+    public function getWithStatistics($id)
+    {
+        $id = $this->dbSanitize($id);
+        $query = 'SELECT
+                    c.*,
+                    (SELECT COUNT(*) FROM movies_customers WHERE customer_id = c.id) AS `all`,
+                    (SELECT COUNT(*) FROM movies_customers WHERE customer_id = c.id AND comm_date IS NOT NULL) AS `returned`,
+                    (SELECT COUNT(*) FROM movies_customers WHERE customer_id = c.id AND comm_date IS NULL) AS `borrowed`
+                FROM `'.$this->tablename.'` AS c WHERE c.`id` = '.$id;
+
+        return $this->dbSelectRow($query, MYSQLI_ASSOC);
+    }
+
     public function getByEmail($email)
     {
         $email = $this->dbSanitize($email);
@@ -98,6 +111,13 @@ class UserModel extends MainModel
     public function getUserMovies($customerId)
     {
         $query = "SELECT mc.*, m.title, m.thumbnail, m.description, m.id AS movie_id FROM movies_customers AS mc LEFT JOIN movies as m ON m.id = mc.movie_id WHERE mc.customer_id = '".$customerId."' AND mc.comm_date IS NULL ORDER BY mc.rental_date DESC";
+
+        return $this->dbSelectRows($query, MYSQLI_ASSOC);
+    }
+
+    public function getAllUserMovies($customerId)
+    {
+        $query = "SELECT mc.*, m.title, m.thumbnail, m.description, m.id AS movie_id FROM movies_customers AS mc LEFT JOIN movies as m ON m.id = mc.movie_id WHERE mc.customer_id = '".$customerId."' ORDER BY mc.rental_date DESC";
 
         return $this->dbSelectRows($query, MYSQLI_ASSOC);
     }

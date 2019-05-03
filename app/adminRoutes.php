@@ -96,3 +96,8 @@ $routeCollections->get(new \Router\Route([
     'name' => "AdminCustomersRemove",
     'callback' => 'Admin\\Customers\\Controller\\CustomerController@destroy'
 ]));
+$routeCollections->get(new \Router\Route([
+    'path' => '/admin/customers/statistics/@id',
+    'name' => "AdminCustomerStatistics",
+    'callback' => 'Admin\\Customers\\Controller\\CustomerController@statistics'
+]));
