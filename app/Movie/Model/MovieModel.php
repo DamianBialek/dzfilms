@@ -40,7 +40,7 @@ class MovieModel extends \Core\Model\MainModel
     {
         $q = $this->dbSanitize($q);
 
-        $query = "SELECT movies.*, cat.name AS category_name FROM `" . $this->tablename . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id WHERE movies.title LIKE '%{$q}%' OR movies.description LIKE '%{$q}%'";
+        $query = "SELECT movies.*, cat.name AS category_name FROM `" . $this->tablename . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id WHERE movies.title LIKE '%{$q}%'";
 
         return $this->dbSelectRows($query, MYSQLI_ASSOC);
     }
