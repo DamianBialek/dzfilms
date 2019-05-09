@@ -101,4 +101,15 @@ class MovieModel extends \Core\Model\MainModel
         $query = 'UPDATE `movies_customers` SET `comm_date` = CURRENT_TIMESTAMP WHERE `movie_id` = "'.$movie['id'].'" AND `customer_id` = "'.$customer['id'].'"';
         $this->dbUpdate($query);
     }
+
+    public function getSoon()
+    {
+        $query = "SELECT movies.*, cat.name AS category_name FROM `" . $this->tablename . "` LEFT JOIN `categories` AS cat ON movies.category_id = cat.id";
+
+        $query .= ' WHERE movies.active = 0';
+
+        $query .= ' ORDER BY movies.id DESC';
+
+        return $this->dbSelectRows($query, MYSQLI_ASSOC);
+    }
 }

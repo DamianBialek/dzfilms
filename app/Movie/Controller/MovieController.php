@@ -94,4 +94,12 @@ class MovieController extends \FrontController
         header('Location: '.$link);
         exit();
     }
+
+    public function soon()
+    {
+        $movie = new MovieModel();
+        $movies = $movie->getSoon();
+
+        $this->render('soon/index.php', ['movies' => $movies]);
+    }
 }

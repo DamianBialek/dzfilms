@@ -24,8 +24,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a href="<?=url('/')?>" class="dropdown-item">Lista filmów</a>
                     <a href="<?=url('/newest')?>" class="dropdown-item">Nowości</a>
-                    <a class="dropdown-item" href="#">Wkrótce</a>
-                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="<?=url('/soon')?>">Wkrótce</a>
                 </div>
             </li>
 <!--            <li class="nav-item dropdown">-->
